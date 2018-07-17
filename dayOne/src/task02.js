@@ -1,0 +1,19 @@
+// @flow
+
+function isEqual(array1: Array<number>, array2: Array<number>) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let i: number = 0; i < array1.length; i++) {
+    if (array1[i] !== array2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(isEqual([1, 2, 3], [1, 2, 3])); //
+console.log(isEqual([1, 2, 3], [1, 3, 2]));
+console.log(isEqual([1, 3], [1, 2, 3]));
