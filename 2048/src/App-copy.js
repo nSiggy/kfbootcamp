@@ -9,28 +9,28 @@ type Props = {};
 class App extends Component<Props, State> {
   state = {
     valueBox: [
-      {id: 0, value: 0, hasMerged: false},
-      {id: 1, value: 0, hasMerged: false},
-      {id: 2, value: 0, hasMerged: false},
-      {id: 3, value: 0, hasMerged: false},
-      {id: 4, value: 0, hasMerged: false},
-      {id: 5, value: 0, hasMerged: false},
-      {id: 6, value: 0, hasMerged: false},
-      {id: 7, value: 0, hasMerged: false},
-      {id: 8, value: 0, hasMerged: false},
-      {id: 9, value: 0, hasMerged: false},
-      {id: 10, value: 0, hasMerged: false},
-      {id: 11, value: 0, hasMerged: false},
-      {id: 12, value: 0, hasMerged: false},
-      {id: 13, value: 0, hasMerged: false},
-      {id: 14, value: 0, hasMerged: false},
-      {id: 15, value: 0, hasMerged: false},
+      {id: 0, value: 2, hasMerged: false},
+      {id: 1, value: 2, hasMerged: false},
+      {id: 2, value: 4, hasMerged: false},
+      {id: 3, value: 8, hasMerged: false},
+      {id: 4, value: 128, hasMerged: false},
+      {id: 5, value: 64, hasMerged: false},
+      {id: 6, value: 32, hasMerged: false},
+      {id: 7, value: 16, hasMerged: false},
+      {id: 8, value: 256, hasMerged: false},
+      {id: 9, value: 512, hasMerged: false},
+      {id: 10, value: 1024, hasMerged: false},
+      {id: 11, value: 2048, hasMerged: false},
+      {id: 12, value: 32768, hasMerged: false},
+      {id: 13, value: 16384, hasMerged: false},
+      {id: 14, value: 8192, hasMerged: false},
+      {id: 15, value: 4096, hasMerged: false},
     ],
     previousState: [
       {id: 0, value: 0, hasMerged: false},
       {id: 1, value: 0, hasMerged: false},
       {id: 2, value: 0, hasMerged: false},
-      {id: 3, value: 0, hasMerged: false},
+      {id: 3, value: 4, hasMerged: false},
       {id: 4, value: 0, hasMerged: false},
       {id: 5, value: 0, hasMerged: false},
       {id: 6, value: 0, hasMerged: false},
@@ -203,79 +203,6 @@ class App extends Component<Props, State> {
     }
   }
 
-  _getValueForCurrentStateBeforeMoving(): Array<ValueBoxesType> {
-    let currentValueBox: Array<ValueBoxesType> = this.state.valueBox;
-    let oldState: Array<ValueBoxesType> = [];
-
-    for (let i = 0; i < currentValueBox.length; i++) {
-      oldState.push(Object.assign({}, currentValueBox[i]));
-    }
-    return oldState;
-  }
-
-  _spawnRandomValues() {
-    let spawnValue;
-    let spawnPos: number = 0;
-
-    let currentValueBox = this.state.valueBox;
-
-    if (Math.random() < 0.9) {
-      spawnValue = 2;
-    } else {
-      spawnValue = 4;
-    }
-
-    let randomValue = Math.random();
-
-    if (randomValue < 0.06) {
-      spawnPos = 0;
-    } else if (randomValue < 0.12) {
-      spawnPos = 1;
-    } else if (randomValue < 0.18) {
-      spawnPos = 2;
-    } else if (randomValue < 0.24) {
-      spawnPos = 3;
-    } else if (randomValue < 0.3) {
-      spawnPos = 4;
-    } else if (randomValue < 0.36) {
-      spawnPos = 5;
-    } else if (randomValue < 0.42) {
-      spawnPos = 6;
-    } else if (randomValue < 0.48) {
-      spawnPos = 7;
-    } else if (randomValue < 0.54) {
-      spawnPos = 8;
-    } else if (randomValue < 0.6) {
-      spawnPos = 9;
-    } else if (randomValue < 0.66) {
-      spawnPos = 10;
-    } else if (randomValue < 0.72) {
-      spawnPos = 11;
-    } else if (randomValue < 0.78) {
-      spawnPos = 12;
-    } else if (randomValue < 0.84) {
-      spawnPos = 13;
-    } else if (randomValue < 0.9) {
-      spawnPos = 14;
-    } else if (randomValue < 0.96) {
-      spawnPos = 15;
-    } else {
-      console.log('nope');
-    }
-
-    if (currentValueBox[spawnPos].value === 0) {
-      currentValueBox[spawnPos].value = spawnValue;
-    } else {
-      for (let i = 0; i < currentValueBox.length; i++) {
-        if (currentValueBox[i].value === 0) {
-          this._spawnRandomValues();
-          return;
-        }
-      }
-      return;
-    }
-  }
-
   _assignPreviousState() {
     let currentValueBox: Array<ValueBoxesType> = this.state.valueBox;
     let oldState: Array<ValueBoxesType> = [];
@@ -283,51 +210,30 @@ class App extends Component<Props, State> {
     for (let i = 0; i < currentValueBox.length; i++) {
       oldState.push(Object.assign({}, currentValueBox[i]));
     }
-    console.log('saving');
+
     this.setState({previousState: oldState});
   }
 
-  _compareStates(comparatorValue: Array<ValueBoxesType>) {
-    console.log(comparatorValue[0].value);
-    for (let i = 0; i < comparatorValue.length; i++) {
-      // console.log(
-      //   'comparing ' +
-      //     i +
-      //     ' --- ' +
-      //     comparatorValue[i].value +
-      //     ' <-> ' +
-      //     this.state.valueBox[i].value,
-      // );
-      if (comparatorValue[i].value != this.state.valueBox[i].value) {
-        this._spawnRandomValues();
-        this.setState({previousState: comparatorValue});
-        console.log('saving');
-        break;
-      }
-    }
-  }
-
-  _isCurrentStateEmpty() {
+  _compareStates() {
     for (let i = 0; i < this.state.valueBox.length; i++) {
-      if (this.state.valueBox[i].value !== 0) {
+      if (this.state.valueBox[i].value !== this.state.previousState[i].value) {
         return false;
       }
     }
     return true;
   }
+
   _onKeyUp = (event: KeyboardEvent) => {
     console.log(event.key);
-
-    let comparatorValue = this._getValueForCurrentStateBeforeMoving();
-
-    if (this._isCurrentStateEmpty()) {
-      this._spawnRandomValues();
-      this.setState();
-    }
 
     if (event.key === ' ') {
       this.setState({valueBox: this.state.previousState});
       console.log('reverting');
+    }
+
+    if (!this._compareStates()) {
+      console.log('calling to save state by compareStates');
+      this._assignPreviousState();
     }
 
     if (event.key === 's') {
@@ -335,31 +241,26 @@ class App extends Component<Props, State> {
       this._assignPreviousState();
     }
 
+    this._assignPreviousState();
+
     if (event.key === 'd') {
-      this._spawnRandomValues();
+      console.log(this.state.previousState);
     }
 
     if (event.key === 'ArrowUp') {
       this._moveUp();
-      this._compareStates(comparatorValue);
-      //this._spawnRandomValues();
     }
 
     if (event.key === 'ArrowDown') {
       this._moveDown();
-      this._compareStates(comparatorValue);
-      //this._spawnRandomValues();
     }
 
     if (event.key === 'ArrowRight') {
       this._moveRight();
-      this._compareStates(comparatorValue);
-      //this._spawnRandomValues();
     }
 
     if (event.key === 'ArrowLeft') {
       this._moveLeft();
-      this._compareStates(comparatorValue);
     }
   };
   /*

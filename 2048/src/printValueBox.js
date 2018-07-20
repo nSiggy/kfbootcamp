@@ -6,7 +6,6 @@ type Props = {
   value: number;
   id: number;
 };
-
 const styleDefault = {
   width: '100px',
   height: '100px',
@@ -161,107 +160,81 @@ export default function ValueBox(props: Props) {
     case 2:
       return (
         <div style={style2}>
-          <span>
-            {id} - {value}
-          </span>
+          <span>{value}</span>
         </div>
       );
     case 4:
       return (
         <div style={style4}>
-          <span>
-            {id} - {value}
-          </span>
+          <span>{value}</span>
         </div>
       );
     case 8:
       return (
         <div style={style8}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 16:
       return (
         <div style={style16}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 32:
       return (
         <div style={style32}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 64:
       return (
         <div style={style64}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 128:
       return (
         <div style={style128}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 256:
       return (
         <div style={style256}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 512:
       return (
         <div style={style512}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 1024:
       return (
         <div style={style1024}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
     case 2048:
       return (
         <div style={style2048}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
 
     case 0:
       return (
         <div style={styleDefault}>
-          <span>
-            {id} - {value}
-          </span>
+          <span />
         </div>
       );
 
     default:
       return (
         <div style={style4096}>
-          <span style={textWhite}>
-            {id} - {value}
-          </span>
+          <span style={textWhite}>{value}</span>
         </div>
       );
   }
