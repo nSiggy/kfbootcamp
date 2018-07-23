@@ -260,7 +260,7 @@ class App extends Component<Props, State> {
     } else if (randomValue < 0.96) {
       spawnPos = 15;
     } else {
-      console.log('nope');
+      console.log('lorem ipsum');
     }
 
     if (currentValueBox[spawnPos].value === 0) {
